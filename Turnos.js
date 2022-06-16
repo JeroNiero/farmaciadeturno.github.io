@@ -8,7 +8,7 @@ function diasDeTurno(farmacia) {
       return [4,5,6];
     }
   }
-  
+  //holaaaaaaaaaaaaaaaa
   //messi
   function estaDeTurno(farmacia, dia) {
     const dias = diasDeTurno(farmacia);
