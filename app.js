@@ -9,7 +9,7 @@ function diasDeTurno(farmacia) {
     }
   }
   
-  //lala
+  //messi
   function estaDeTurno(farmacia, dia) {
     const dias = diasDeTurno(farmacia);
     return dias.includes(dia);
