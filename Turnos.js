@@ -14,7 +14,7 @@ function diasDeTurno(farmacia) {
     const dias = diasDeTurno(farmacia);
     return dias.includes(dia);
   }
-  
+  // https://youtu.be/dQw4w9WgXcQ 
   
   const result7Lagos = estaDeTurno("7 lagos", 1);
   console.log(result7Lagos); // standard output
