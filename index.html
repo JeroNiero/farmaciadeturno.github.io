@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmacia de turno</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="Turnos.js"></script>
+    <style>
+        .derecha {
+            position: relative;
+            left: 40px;
+            width: 200px;
+            height: 30px;
+            font-size: 19px;
+            color: forestgreen;
+        }
+        #boton1 {
+            background-color: lightgray; 
+            width: 205px;       
+        }
+        h1 {
+            color: dimgray;
+        }
+        body {
+            background-color: rgb(240, 240, 240);
+        }
+        #calendario {
+            background-color: lightgray;
+        }
+        p {
+            font-size: 1.1em;
+            position: absolute;
+            top: 150px;
+            left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Farmacias de Turno</h1>
+    <br>
+    <input type="date" required class="derecha" id="calendario"><br>
+    <button type="button" class="derecha" id="boton1">Consultar</button><br>
+    <p>Hoy está de turno: <span id="nombreFarmacia"></span></p>
+</body>
+</html>
+<script>
+    $(document).ready(function(){
+        $("#boton1").click(function(){
+            let dateString = $("#calendario").val(); //Anda medio raro (hace la fecha anterior)
+            let date = new Date(dateString);
+            let dia = date.getDate()+1;
+            $("#nombreFarmacia").html(farmaciasDeTurno(dia));
+        })
+    });
+</script>
