@@ -51,7 +51,7 @@
         $("#boton1").click(function(){
             let dateString = $("#calendario").val(); //Anda medio raro (hace la fecha anterior)
             let date = new Date(dateString);
-            let dia = date.getDate()+1;
+            let dia = date.getDate()+1; //este +1 arregla mas o menos el problema pero, con los primeros días (1) despues de meses con 31 dias, no funciona
             $("#nombreFarmacia").html(farmaciasDeTurno(dia));
         })
     });
