@@ -1,69 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farmacia de turno</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script src="Turnos.js"></script>
     <link rel="shortcut icon" href="logoFarmacia.png">
-    <style>
-        .derecha {
-            position: relative;
-            left: 40px;
-            width: 200px;
-            height: 27px;            
-            background-color:rgba(46, 139, 86, 0.473);
-            font-size: 19px;
-        }
-        #boton1 {
-            width: 205px;    
-            
-        }
-        h1 {
-            color: rgb(0, 0, 0);
-            text-align: center;
-           
-
-            
-        }
-        body {
-            background-color: rgb(230, 255, 230);
-        }
-        p {
-            font-size: 1.1em;
-            position: absolute;
-            top: 150px;
-            left: 20px;
-            
-        }
-        span {
-            font-weight: bold;
-            color: seagreen;
-        }
-        
-           
-        
-    </style>
+    
+  
 </head>
+
 <body>
-    <h1 class="h1">Farmacias de Turno</h1>
+    <h1 class="text-center">Farmacias de Turno</h1>
     <br>
-    <input type="date" required class="derecha" id="calendario"><br>
-    <button type="button" class="derecha" id="boton1">Consultar</button><br>
-    <p>Hoy está de turno: <span id="nombreFarmacia"></span></p>
+    <input type="date" required class="text-center" id="calendario"><br>
+    <button type="button" class="btn btn-light" id="boton1">Consultar</button><br>
+    <p class="text-center">Hoy está de turno: <span id="nombreFarmacia" class="text-center"></span></p>
 </body>
+
 </html>
 <script>
-    $(document).ready(function(){
-        $("#boton1").click(function(){
-            let dateString = $("#calendario").val(); 
+    $(document).ready(function () {
+        $("#boton1").click(function () {
+            let dateString = $("#calendario").val();
             let dateArray = dateString.split("-");
-            let dia = parseInt(dateArray[2]); 
+            let dia = parseInt(dateArray[2]);
             console.log(dia);
             $("#nombreFarmacia").html(farmaciasDeTurno(dia));
-           
+
         })
     });
 </script>

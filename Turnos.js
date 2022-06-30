@@ -3,7 +3,15 @@ const farmacias = {
   "Montaña" : [2, 4, 8, 10, 12, 16, 18, 20, 22, 24, 28, 30],
   "Rios" : [6, 9, 14, 17, 26],
 }
-
+//hay que hacer que se vea lindo
+//centrar
+//google fonts (tipografia "piola")
+//separar color "consultar"
+//cambiar paleta colores
+//<link rel="preconnect" href="https://fonts.googleapis.com">
+//<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+//<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet"></link>
+//font-family: 'Playfair Display', serif;
 function farmaciasDeTurno(dia) {
   let nombreFarmacia = "";
   for (const farmacia in farmacias) {
