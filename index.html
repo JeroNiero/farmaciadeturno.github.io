@@ -17,10 +17,18 @@
 
 <body>
     <h1 class="text-center">Farmacias de Turno</h1>
-    <br>
-    <input type="date" required class="text-center" id="calendario"><br>
-    <button type="button" class="btn btn-light" id="boton1">Consultar</button><br>
-    <p class="text-center">Hoy está de turno: <span id="nombreFarmacia" class="text-center"></span></p>
+    <div class="container">
+        <div class="row">
+            <div class="col align-self-start primary"></div>
+            <div class="col align-self-center">
+                <input type="date" required class="text-center" id="calendario"><br>
+                <button type="button" class="btn btn-light" id="boton1">Consultar</button><br>
+            </div> 
+            <div class="col align-self-end"></div>  
+        </div>
+        <p class="text-center">Hoy está de turno: <span id="nombreFarmacia" class="text-center"></span></p>
+    </div>
+    
 </body>
 
 </html>
