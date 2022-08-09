@@ -30,8 +30,7 @@
         </div>
         <div class="row flex"> 
             <div class="col ratio ratio-16x9 justify-content-center ms-4">
-                <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
-                </iframe>
+                <iframe id="iframe" src="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="col">
                 <h4 class="text-center">Contacto</h4>
@@ -53,8 +52,9 @@
             let dateArray = dateString.split("-");
             let dia = parseInt(dateArray[2]); 
             console.log(dia);
-            $("#nombreFarmacia").html(farmaciasDeTurno(dia));
-           
+            const infoDeFarmacia = farmaciasDeTurno(dia)
+            $("#nombreFarmacia").html(infoDeFarmacia.nombre);
+            $('#iframe').attr({src:infoDeFarmacia.ubicacion});
         })
     });
 </script>
