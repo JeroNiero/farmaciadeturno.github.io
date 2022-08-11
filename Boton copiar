@@ -1,0 +1,17 @@
+</head>
+  <body>
+    <textarea id="textArea">algo.</textarea>
+    <button onclick="copyToClipBoard()">Copiar</button>
+
+    <script src="link to your JS file"></script>
+  
+
+<script>function copyToClipBoard() {
+
+    var content = document.getElementById('textArea');
+    
+    content.select();
+    document.execCommand('copy');
+
+    alert(" Direccion Copiada");
+}
