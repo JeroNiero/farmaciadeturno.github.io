@@ -49,10 +49,13 @@
 </html>
 <script>
     $(document).ready(function () {
+        let infoDeFarmacia=verificarFecha();
+        $("#nombreFarmacia").html(infoDeFarmacia.nombre);
+        $('#iframe').attr({src:infoDeFarmacia.ubicacion});
         $("#boton1").click(function () {
             let dateString = $("#calendario").val();
-
-            const infoDeFarmacia = verificarFecha(dateString)
+            console.log(dateString)
+            infoDeFarmacia = verificarFecha(dateString)
             $("#nombreFarmacia").html(infoDeFarmacia.nombre);
             $('#iframe').attr({src:infoDeFarmacia.ubicacion});
         })

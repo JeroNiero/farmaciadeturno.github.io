@@ -8,7 +8,7 @@ const listaFarmacias = [
     ['De La Montaña' , '2022-05-09',"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d377.7503905043755!2d-71.64384061198855!3d-40.76195602159554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9610bf681dbaede5%3A0x5a9dddbe0000614d!2sFarmacia%20La%20Monta%C3%B1a!5e0!3m2!1ses!2sar!4v1660081424064!5m2!1ses!2sar"],
     
 ];
-function verificarFecha(dia1) {
+function verificarFecha(dia1=moment().format('YYYY-MM-DD')) {
     for (let f = 0; f < listaFarmacias.length; f++) {
         let farmacia = listaFarmacias[f];
         let fechaInicial = moment(farmacia[1],'YYYY-MM-DD');
