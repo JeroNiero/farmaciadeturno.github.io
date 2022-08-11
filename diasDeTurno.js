@@ -29,7 +29,8 @@ function verificarFecha(dia1=moment().format('YYYY-MM-DD')) {
             if (siguienteFecha.unix() == diaElegido.unix()) {
                 return {
                     nombre : farmacia[0],
-                    ubicacion : farmacia[2]
+                    ubicacion : farmacia[2],
+                    fecha: dia1,
                 }
             };
         };

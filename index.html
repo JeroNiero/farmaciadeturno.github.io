@@ -52,6 +52,7 @@
         let infoDeFarmacia=verificarFecha();
         $("#nombreFarmacia").html(infoDeFarmacia.nombre);
         $('#iframe').attr({src:infoDeFarmacia.ubicacion});
+        $("#calendario").val(infoDeFarmacia.fecha);
         $("#boton1").click(function () {
             let dateString = $("#calendario").val();
             console.log(dateString)
