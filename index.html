@@ -7,16 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farmacia de turno</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
     <script src="diasDeTurno.js"></script>
     <link rel="shortcut icon" href="logoFarmacia.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"
+        crossorigin="anonymous"></script>
 
 </head>
-<body  class=" bg-light">
+
+<body class=" bg-light">
     <div class="container-xxl text-success align-self-center">
         <div class="row h-25 mb-4 mt-4 bg-success text-light">
             <h1 class="text-center">Farmacias de Turno</h1>
@@ -30,13 +38,17 @@
             <div class="col"></div>
         </div>
         <div class="row h-25">
-            <h3 class="text-center">Hoy está de turno: <span id="nombreFarmacia"></span></h3>
+            <h3 class="text-center" id="nombreTurnoHoy">Hoy está de turno: <span class="nombreFarmacia"></span></h3>
+            <h3 style="display:none;" class="text-center" id="nombreTurnoFuturo">Estará de turno: <span
+                    class="nombreFarmacia"></span></h3>
         </div>
         <div class="row h-50 mb-3 mt-3">
             <div class="col"></div>
             <div class="col-sm-12 col-md-6">
-                <div class=" text-center" >
-                    <iframe id="iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12087.774078593295!2d-71.65857040247056!3d-40.76326696351128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9610bf42e48faa93%3A0x205ebc786470b636!2sVilla%20La%20Angostura%2C%20Neuqu%C3%A9n!5e0!3m2!1ses-419!2sar!4v1660081683161!5m2!1ses-419!2sar" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class=" text-center">
+                    <iframe id="iframe"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12087.774078593295!2d-71.65857040247056!3d-40.76326696351128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9610bf42e48faa93%3A0x205ebc786470b636!2sVilla%20La%20Angostura%2C%20Neuqu%C3%A9n!5e0!3m2!1ses-419!2sar!4v1660081683161!5m2!1ses-419!2sar"
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
             <div class="col"></div>
@@ -44,42 +56,53 @@
     </div>
     <style>
         .footer {
-          position: fixed;
-          left: 0;
-          bottom: 0;
-          width: 100%;
-          color: rgb(0, 0, 0);
-          text-align: center;
-          font-style: italic;
-          font-size: smaller;
-          font-weight: 600;
-          color: #198154;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            color: rgb(0, 0, 0);
+            text-align: center;
+            font-style: italic;
+            font-size: smaller;
+            font-weight: 600;
+            color: #198154;
         }
-        </style>
+    </style>
     <footer class="text-center footer">
         <p>Cooperativa Escolar de Software Don Jaime de Nevares</p>
     </footer>
-    
+
 </body>
 
 </html>
 <script>
     $(document).ready(function () {
-         const hoy =moment().format('YYYY-MM-DD')
-         console.log(hoy)
-         const datePicker = document.getElementById("calendario")
-         console.log(datePicker)
-         datePicker.setAttribute("min", hoy);
-        let infoDeFarmacia=verificarFecha();
-        $("#nombreFarmacia").html(infoDeFarmacia.nombre);
-        $('#iframe').attr({src:infoDeFarmacia.ubicacion});
+        const hoy = moment().format('YYYY-MM-DD')
+        console.log(hoy)
+        const datePicker = document.getElementById("calendario")
+        console.log(datePicker)
+        datePicker.setAttribute("min", hoy);
+
+
+        let infoDeFarmacia = verificarFecha();
+        $(".nombreFarmacia").html(infoDeFarmacia.nombre);
+        $('#iframe').attr({ src: infoDeFarmacia.ubicacion });
         $("#calendario").val(infoDeFarmacia.fecha);
         $("#boton1").click(function () {
             let dateString = $("#calendario").val();
+            if (dateString == hoy) {
+                console.log("esHoy")
+                $("#nombreTurnoHoy").show();
+                $("#nombreTurnoFuturo").hide();
+            } else {
+                console.log("noEsHoy")
+                $("#nombreTurnoFuturo").show();
+                $("#nombreTurnoHoy").hide();
+            }
             console.log(dateString)
             infoDeFarmacia = verificarFecha(dateString)
-            $("#nombreFarmacia").html(infoDeFarmacia.nombre);
-            $('#iframe').attr({src:infoDeFarmacia.ubicacion});
+            $(".nombreFarmacia").html(infoDeFarmacia.nombre);
+            $('#iframe').attr({ src: infoDeFarmacia.ubicacion });
 
         })
     });
