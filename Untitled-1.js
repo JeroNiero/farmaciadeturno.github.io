@@ -42,6 +42,6 @@ const deLaMontaña = {
     ubicacion:'Av. Arrayanes 207'
 }
 
-const listaFarmacias = {maiten, delSiglo, pharmacyAvenida, laBoticaYPuertoManzano, radal, deLaMontaña}
+const listaFarmacias = [maiten, delSiglo, pharmacyAvenida, laBoticaYPuertoManzano, radal, deLaMontaña]
 
-console.log(listaFarmacias[0].nombre)
+console.log(listaFarmacias[1].fechaInicial)
