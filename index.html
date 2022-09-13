@@ -56,38 +56,34 @@
 </html>
 <script>
     $(document).ready(function () {
-         const hoy =moment().format('YYYY-MM-DD')
-         console.log(hoy)
-         const datePicker = document.getElementById("calendario")
-         console.log(datePicker)
-         datePicker.setAttribute("min", hoy);
+        const hoy =moment().format('YYYY-MM-DD')
+        const datePicker = document.getElementById("calendario")
+        datePicker.setAttribute("min", hoy);
         let infoDeFarmacia=verificarFecha();
         $("#nombreFarmacia").html(infoDeFarmacia.nombre);
         $('#iframe').attr({src:infoDeFarmacia.ubicacion});
         $("#boton1").click(function () {
             let dateString = $("#calendario").val();
-            console.log(dateString)
             infoDeFarmacia = verificarFecha(dateString)
             $("#nombreFarmacia").html(infoDeFarmacia.nombre);
             $('#iframe').attr({src:infoDeFarmacia.ubicacion});
         });
-
         $("#copiar").click(function () {
-         $("#copiar").prop("title", "Copiado!")
+            $("#copiar").prop("title", "Copiado!")
         });
-    });
 
-    var clipboard = new ClipboardJS(".btn");
+        var clipboard = new ClipboardJS(".btn");
 
-    clipboard.on('success', function (e) {
-    console.info('Action:', e.action);
-    console.info('Text:', e.text);
-    console.info('Trigger:', e.trigger);
-    });
+        clipboard.on('success', function (e) {
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        });
 
-    clipboard.on('error', function (e) {
-    console.info('Action:', e.action);
-    console.info('Text:', e.text);
-    console.info('Trigger:', e.trigger);
+        clipboard.on('error', function (e) {
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        });
     });
 </script>
