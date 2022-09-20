@@ -47,6 +47,9 @@
                 <button title="Copiar Para Tu Página" id="copiar" class="btn mt-3" data-clipboard-text="<iframe src='http://turnosvla.fiqus.coop/index_for_embed.html'></iframe>">
                     <i class="bi bi-clipboard-check-fill"></i>
                 </button>
+                <div>
+                    <h6 class="invisible" id="alertaCopiado">Copiado!</h6>
+                </div>
             </div>
             <div class="col"></div>
         </div>
@@ -60,6 +63,7 @@
         const hoy =moment().format('YYYY-MM-DD')
         const datePicker = document.getElementById("calendario")
         datePicker.setAttribute("min", hoy);
+        datePicker.setAttribute('value',hoy)
         let infoDeFarmacia=verificarFecha();
         $("#nombreFarmacia").html(infoDeFarmacia.nombre);
         $("#direccionFarmacia").html(infoDeFarmacia.direccion);
@@ -72,7 +76,12 @@
             $('#iframe').attr({src:infoDeFarmacia.ubicacion});
         });
         $("#copiar").click(function () {
-            $("#copiar").prop("title", "Copiado!")
+            $("#alertaCopiado").removeClass("invisible");
+            $("#alertaCopiado").addClass("visible");
+            setTimeout(() => {
+                $("#alertaCopiado").removeClass("visible");
+                $("#alertaCopiado").addClass("invisible");
+            }, 2000);
         });
 
         var clipboard = new ClipboardJS(".btn");
