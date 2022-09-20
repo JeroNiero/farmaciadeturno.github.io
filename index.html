@@ -35,6 +35,7 @@
         </div>
         <div class="row h-25">
             <h3 class="text-center">Hoy está de turno:<span id="nombreFarmacia"></span></h3>
+            <h4 class="text-center">Dirección: <span id="direccionFarmacia"></span></h4>
         </div>
         <div class="row h-50 mb-3">
             <div class="col"></div>
@@ -61,11 +62,13 @@
         datePicker.setAttribute("min", hoy);
         let infoDeFarmacia=verificarFecha();
         $("#nombreFarmacia").html(infoDeFarmacia.nombre);
+        $("#direccionFarmacia").html(infoDeFarmacia.direccion);
         $('#iframe').attr({src:infoDeFarmacia.ubicacion});
         $("#boton1").click(function () {
             let dateString = $("#calendario").val();
             infoDeFarmacia = verificarFecha(dateString)
             $("#nombreFarmacia").html(infoDeFarmacia.nombre);
+            $("#direccionFarmacia").html(infoDeFarmacia.direccion);
             $('#iframe').attr({src:infoDeFarmacia.ubicacion});
         });
         $("#copiar").click(function () {
