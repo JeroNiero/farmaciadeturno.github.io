@@ -43,7 +43,8 @@
             <div class="col"></div>
         </div>
         <div class="row h-25">
-            <h3 class="text-center">Hoy está de turno: <b><span id="nombreFarmacia"></span></b></h3>
+            <h3 class="text-center" id="nombreTurnoHoy">Hoy está de turno: <span class="nombreFarmacia"></span></h3>
+            <h3 style="display:none;" class="text-center" id="nombreTurnoFuturo">Estará de turno: <span class="nombreFarmacia"></span></h3>
             <h6 class="text-center">Dirección: <span id="direccionFarmacia"></span></h6>
         </div>
         <div class="row mb-1">
@@ -79,13 +80,20 @@
         datePicker.setAttribute("min", hoy);
         datePicker.setAttribute('value',hoy)
         let infoDeFarmacia=verificarFecha();
-        $("#nombreFarmacia").html(infoDeFarmacia.nombre);
+        $(".nombreFarmacia").html(infoDeFarmacia.nombre);
         $("#direccionFarmacia").html(infoDeFarmacia.direccion);
         $('#iframe').attr({src:infoDeFarmacia.ubicacion});
         $("#boton1").click(function () {
             let dateString = $("#calendario").val();
+            if (dateString == hoy) {
+                $("#nombreTurnoHoy").show();
+                $("#nombreTurnoFuturo").hide();
+            } else {
+                $("#nombreTurnoFuturo").show();
+                $("#nombreTurnoHoy").hide();
+            }
             infoDeFarmacia = verificarFecha(dateString)
-            $("#nombreFarmacia").html(infoDeFarmacia.nombre);
+            $(".nombreFarmacia").html(infoDeFarmacia.nombre);
             $("#direccionFarmacia").html(infoDeFarmacia.direccion);
             $('#iframe').attr({src:infoDeFarmacia.ubicacion});
         });
