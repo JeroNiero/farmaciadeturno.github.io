@@ -74,14 +74,25 @@
 
 </html>
 <script>
-    $(document).ready(function () {
+   function dibujarDirecciones(infoDeFarmacia){
+    if (infoDeFarmacia.direcciones.length > 1) {
+            $("#preDireccion").html("Direcciones: ");
+        } else {
+            $("#preDireccion").html("Dirección: ");
+        }
+        $("#direccionFarmacia").empty();
+        for (const indiceDireccion in infoDeFarmacia.direcciones) {
+            $( "#direccionFarmacia" ).append(`<div>${infoDeFarmacia.direcciones[indiceDireccion]}</div>`);
+        }
+   }
+   $(document).ready(function () {
         const hoy =moment().format('YYYY-MM-DD')
         const datePicker = document.getElementById("calendario")
         datePicker.setAttribute("min", hoy);
         datePicker.setAttribute('value',hoy)
         let infoDeFarmacia=verificarFecha();
+        dibujarDirecciones(infoDeFarmacia)
         $(".nombreFarmacia").html(infoDeFarmacia.nombre);
-        $("#direccionFarmacia").html(infoDeFarmacia.direccion);
         $('#iframe').attr({src:infoDeFarmacia.ubicacion});
         $("#boton1").click(function () {
             let dateString = $("#calendario").val();
@@ -94,7 +105,7 @@
             }
             infoDeFarmacia = verificarFecha(dateString)
             $(".nombreFarmacia").html(infoDeFarmacia.nombre);
-            $("#direccionFarmacia").html(infoDeFarmacia.direccion);
+            dibujarDirecciones(infoDeFarmacia)
             $('#iframe').attr({src:infoDeFarmacia.ubicacion});
         });
         $("#copiar").click(function () {
