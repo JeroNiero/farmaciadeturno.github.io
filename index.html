@@ -93,7 +93,7 @@
         let infoDeFarmacia=verificarFecha();
         dibujarDirecciones(infoDeFarmacia)
         $(".nombreFarmacia").html(infoDeFarmacia.nombre);
-        $('#iframe').attr({src:infoDeFarmacia.ubicacion});
+        $('#iframe').attr({src:infoDeFarmacia.ubicaciones});
         $("#boton1").click(function () {
             let dateString = $("#calendario").val();
             if (dateString == hoy) {
@@ -106,7 +106,7 @@
             infoDeFarmacia = verificarFecha(dateString)
             $(".nombreFarmacia").html(infoDeFarmacia.nombre);
             dibujarDirecciones(infoDeFarmacia)
-            $('#iframe').attr({src:infoDeFarmacia.ubicacion});
+            $('#iframe').attr({src:infoDeFarmacia.ubicaciones});
         });
         $("#copiar").click(function () {
             $("#alertaCopiado").removeClass("invisible");
