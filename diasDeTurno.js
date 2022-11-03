@@ -61,7 +61,7 @@ const listaFarmacias = [
         ]
     },
     {
-        nombre: 'De La Montaña' , 
+        nombre: 'La Montaña' , 
         fechaDeReferencia: '2022-05-09',
         ubicaciones:[
             'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.9997415914604!2d-71.64563328482632!3d-40.76203041616233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9610bf681dbaede5%3A0x5a9dddbe0000614d!2sFarmacia%20La%20Monta%C3%B1a!5e0!3m2!1ses!2sar!4v1667507297677!5m2!1ses!2sar'
