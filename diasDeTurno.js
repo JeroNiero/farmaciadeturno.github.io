@@ -54,8 +54,8 @@ const listaFarmacias = [
         nombre: 'Radal' , 
         fechaDeReferencia: '2022-05-08',
         ubicaciones:[
-            'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.98464594031!2d-71.64820617997582!3d-40.76236243347259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9610bf42d7c5a475%3A0x35484cf046254d4c!2sFarmacia%20Maiten!5e0!3m2!1ses!2sar!4v1660081489749!5m2!1ses!2sar'
-    ],
+            'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.990107260102!2d-71.64685888482632!3d-40.76224231617523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9610bfc9651c6431%3A0xd3102a5a1e23936f!2sFarmacia%20Radal!5e0!3m2!1ses!2sar!4v1667507633574!5m2!1ses!2sar'
+         ],
         direcciones: [
             'Av. Arrayanes 150'
         ]
