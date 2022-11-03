@@ -20,6 +20,9 @@
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.2/leaflet.js" integrity="sha512-KMraOVM0qMVE0U1OULTpYO4gg5MZgazwPAPyMQWfOkEshpwlLQFCHZ/0lBXyviDNVL+pBGwmeXQnuvGK8Fscvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.2/leaflet.css" integrity="sha512-UkezATkM8unVC0R/Z9Kmq4gorjNoFwLMAWR/1yZpINW08I79jEKx/c8NlLSvvimcu7SL8pgeOnynxfRpe+5QpA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
         body {
             font-family: 'Raleway', sans-serif !important;
@@ -43,13 +46,17 @@
             <div class="col"></div>
         </div>
         <div class="row h-25">
-            <h3 class="text-center">Hoy está de turno: <b><span id="nombreFarmacia"></span></b></h3>
+            <h3 class="text-center" id="nombreTurnoHoy">Hoy está de turno: <span class="nombreFarmacia"></span></h3>
+            <h3 style="display:none;" class="text-center" id="nombreTurnoFuturo">Estará de turno: <span class="nombreFarmacia"></span></h3>
             <h6 class="text-center">Dirección: <span id="direccionFarmacia"></span></h6>
         </div>
         <div class="row mb-1">
             <div class="col mt-2">
                 <div class="col ratio ratio-4x3 text-center" >
-                    <iframe id="iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12087.774078593295!2d-71.65857040247056!3d-40.76326696351128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9610bf42e48faa93%3A0x205ebc786470b636!2sVilla%20La%20Angostura%2C%20Neuqu%C3%A9n!5e0!3m2!1ses-419!2sar!4v1660081683161!5m2!1ses-419!2sar" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                   <div id="map" style="width: 800px; height: 800px; ;">
+
+                   </div>
+                    <!--<iframe id="iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12087.774078593295!2d-71.65857040247056!3d-40.76326696351128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9610bf42e48faa93%3A0x205ebc786470b636!2sVilla%20La%20Angostura%2C%20Neuqu%C3%A9n!5e0!3m2!1ses-419!2sar!4v1660081683161!5m2!1ses-419!2sar" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>-->
                 </div>
                 <div class="row justify-content-end">
                     <div class="invisible"></div>
@@ -73,21 +80,46 @@
 
 </html>
 <script>
-    $(document).ready(function () {
+    const mapOptions = {
+        center: [51,9],
+        zoom: 10
+    };
+    const map = new L.map("map", mapOptions);
+    const layer = new L.TileLayer ("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png");
+    map.addLayer(layer);
+   function dibujarDirecciones(infoDeFarmacia){
+    if (infoDeFarmacia.direcciones.length > 1) {
+            $("#preDireccion").html("Direcciones: ");
+        } else {
+            $("#preDireccion").html("Dirección: ");
+        }
+        $("#direccionFarmacia").empty();
+        for (const indiceDireccion in infoDeFarmacia.direcciones) {
+            $( "#direccionFarmacia" ).append(`<div>${infoDeFarmacia.direcciones[indiceDireccion]}</div>`);
+        }
+   }
+   $(document).ready(function () {
         const hoy =moment().format('YYYY-MM-DD')
         const datePicker = document.getElementById("calendario")
         datePicker.setAttribute("min", hoy);
         datePicker.setAttribute('value',hoy)
         let infoDeFarmacia=verificarFecha();
-        $("#nombreFarmacia").html(infoDeFarmacia.nombre);
-        $("#direccionFarmacia").html(infoDeFarmacia.direccion);
-        $('#iframe').attr({src:infoDeFarmacia.ubicacion});
+        dibujarDirecciones(infoDeFarmacia)
+        $(".nombreFarmacia").html(infoDeFarmacia.nombre);
+        $('#iframe').attr({src:infoDeFarmacia.ubicaciones});
         $("#boton1").click(function () {
             let dateString = $("#calendario").val();
+            if (dateString == hoy) {
+                $("#nombreTurnoHoy").show();
+                $("#nombreTurnoFuturo").hide();
+            } else {
+                $("#nombreTurnoFuturo").show();
+                $("#nombreTurnoHoy").hide();
+            }
             infoDeFarmacia = verificarFecha(dateString)
-            $("#nombreFarmacia").html(infoDeFarmacia.nombre);
-            $("#direccionFarmacia").html(infoDeFarmacia.direccion);
-            $('#iframe').attr({src:infoDeFarmacia.ubicacion});
+            $(".nombreFarmacia").html(infoDeFarmacia.nombre);
+            dibujarDirecciones(infoDeFarmacia)
+            $('#iframe').attr({src:infoDeFarmacia.ubicaciones});
         });
         $("#copiar").click(function () {
             $("#alertaCopiado").removeClass("invisible");
