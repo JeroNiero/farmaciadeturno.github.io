@@ -32,7 +32,7 @@ const listaFarmacias = [
         nombre: 'Pharmacy Avenida',
         fechaDeReferencia: '2022-05-06',
         ubicaciones: [
-            'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d377.74762959341786!2d-71.64270575841793!3d-40.76244181458299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x4941d68be6c34781!2sFaramcia%20VLA%20SRL!5e0!3m2!1ses!2sar!4v1660081203040!5m2!1ses!2sar', 
+            'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d755.4948855830874!2d-71.64274417079703!3d-40.76247468292443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x12d69b7536b7609!2sPharmacy%20Avenida!5e0!3m2!1ses!2sar!4v1667506694351!5m2!1ses!2sar', 
         ],
         direcciones: [
             'Av. Arrayanes 275'

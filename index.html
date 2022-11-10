@@ -42,16 +42,26 @@
             </div>
             <div class="col"></div>
         </div>
-        <div class="row h-25">
-            <h3 class="text-center" id="nombreTurnoHoy">Hoy está de turno: <span class="nombreFarmacia"></span></h3>
+        <div class="row h-25 card" id="card1">
+            <h3 class="text-center card-header" id="nombreTurnoHoy">Hoy está de turno: <span class="nombreFarmacia"></span></h3>
             <h3 style="display:none;" class="text-center" id="nombreTurnoFuturo">Estará de turno: <span class="nombreFarmacia"></span></h3>
-            <h6 class="text-center">Dirección: <span id="direccionFarmacia"></span></h6>
+            <div class="col ratio ratio-4x3 text-center card-body" id="iframeMapa">
+            </div>
+            <div class="card-footer">
+                <h6 class="text-center ">Dirección: <span id="direccionFarmacia"></span></h6>
+            </div>
+        </div>
+        <div class="h-25 w-50 card" id="card2">
+            <div class="col ratio ratio-4x3 text-center card-body">
+                
+            </div>
+            <div class="card-footer">
+                <h6 class="text-center ">Dirección: <span id="direccionFarmacia"></span></h6>
+            </div>
         </div>
         <div class="row mb-1">
             <div class="col mt-2">
-                <div class="col ratio ratio-4x3 text-center" >
-                    <iframe id="iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12087.774078593295!2d-71.65857040247056!3d-40.76326696351128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9610bf42e48faa93%3A0x205ebc786470b636!2sVilla%20La%20Angostura%2C%20Neuqu%C3%A9n!5e0!3m2!1ses-419!2sar!4v1660081683161!5m2!1ses-419!2sar" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
+                
                 <div class="row justify-content-end">
                     <div class="invisible"></div>
                     <div class="col offset-md-11">
@@ -74,6 +84,7 @@
 
 </html>
 <script>
+   $("#card2").hide();
    function dibujarDirecciones(infoDeFarmacia){
     if (infoDeFarmacia.direcciones.length > 1) {
             $("#preDireccion").html("Direcciones: ");
@@ -102,12 +113,26 @@
             } else {
                 $("#nombreTurnoFuturo").show();
                 $("#nombreTurnoHoy").hide();
-            }
-            infoDeFarmacia = verificarFecha(dateString)
+            };
+            infoDeFarmacia = verificarFecha(dateString);
             $(".nombreFarmacia").html(infoDeFarmacia.nombre);
-            dibujarDirecciones(infoDeFarmacia)
+            dibujarDirecciones(infoDeFarmacia);
+            if (infoDeFarmacia.ubicaciones.length == 2) {
+                $("#card2").show();
+                $("#card1").addClass("w-50");
+                for (indexUbicacion in infoDeFarmacia.ubicaciones){
+                    let iframeMapa = "<iframe id='iframe' src='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>";
+                    $("#iframeMapa").append(iframeMapa);
+                    $("#iframe").attr({src:infoDeFarmacia.ubicaciones[indexUbicacion]});
+                }
+            } else {
+                $("#card2").hide();
+                $("#card1").removeClass("w-50");
+            };
             $('#iframe').attr({src:infoDeFarmacia.ubicaciones});
+
         });
+
         $("#copiar").click(function () {
             $("#alertaCopiado").removeClass("invisible");
             $("#alertaCopiado").addClass("visible");
