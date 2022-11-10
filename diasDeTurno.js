@@ -4,7 +4,7 @@ const listaFarmacias = [
         fechaDeReferencia: '2022-05-01',
         ubicaciones:[
             'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.98464594031!2d-71.64820617997582!3d-40.76236243347259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9610bf42d7c5a475%3A0x35484cf046254d4c!2sFarmacia%20Maiten!5e0!3m2!1ses!2sar!4v1660081489749!5m2!1ses!2sar'
-    ], 
+        ], 
         direcciones: [
             'Av. Arrayanes 66'
         ]
@@ -14,7 +14,7 @@ const listaFarmacias = [
         fechaDeReferencia: '2022-05-04',
         ubicaciones:[
             'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.263795803231!2d-71.65485365334109!3d-40.756222384548934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x938fa8392d2c1ac5!2sPharmacy%207%20Lagos!5e0!3m2!1ses!2sar!4v1660081342553!5m2!1ses!2sar'
-    ],
+        ],
         direcciones: [
             'Av. 7 lagos 745'
         ]
@@ -39,7 +39,10 @@ const listaFarmacias = [
         ]
     },
     {
-        nombre: 'La Botica y Puerto Manzano', 
+        nombre: [
+            'La Botica',
+            'Puerto Manzano'
+        ], 
         fechaDeReferencia: '2022-05-07',
         ubicaciones: [
             'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.865284322702!2d-71.65788651162293!3d-40.76498762244108!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9610bf4f91b48175%3A0x453dbec356243bc5!2sFarmacia%20La%20Botica!5e0!3m2!1ses!2sar!4v1660081879910!5m2!1ses!2sar', 
@@ -55,7 +58,7 @@ const listaFarmacias = [
         fechaDeReferencia: '2022-05-08',
         ubicaciones:[
             'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.98464594031!2d-71.64820617997582!3d-40.76236243347259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9610bf42d7c5a475%3A0x35484cf046254d4c!2sFarmacia%20Maiten!5e0!3m2!1ses!2sar!4v1660081489749!5m2!1ses!2sar'
-    ],
+        ],
         ubicacion:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d755.4974804104053!2d-71.64521737080457!3d-40.762246398707894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9610bfc9651c6431%3A0xd3102a5a1e23936f!2sFarmacia%20Radal!5e0!3m2!1ses!2sar!4v1660081819745!5m2!1ses!2sar', 
         direcciones: [
             'Av. Arrayanes 150'

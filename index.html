@@ -42,21 +42,28 @@
             </div>
             <div class="col"></div>
         </div>
-        <div class="row h-25 card" id="card1">
-            <h3 class="text-center card-header" id="nombreTurnoHoy">Hoy está de turno: <span class="nombreFarmacia"></span></h3>
-            <h3 style="display:none;" class="text-center" id="nombreTurnoFuturo">Estará de turno: <span class="nombreFarmacia"></span></h3>
-            <div class="col ratio ratio-4x3 text-center card-body" id="iframeMapa">
-            </div>
-            <div class="card-footer">
-                <h6 class="text-center ">Dirección: <span id="direccionFarmacia"></span></h6>
-            </div>
-        </div>
-        <div class="h-25 w-50 card" id="card2">
-            <div class="col ratio ratio-4x3 text-center card-body">
-                
-            </div>
-            <div class="card-footer">
-                <h6 class="text-center ">Dirección: <span id="direccionFarmacia"></span></h6>
+        <div class="container">
+            <div class="row">
+                <div class="h-25 card col" id="card1">
+                    <h3 class="text-center card-header nombreTurnoHoy">Hoy está de turno: <span class="nombreFarmacia"></span></h3>
+                    <h3 style="display:none;" class="text-center nombreTurnoFuturo">Estará de turno: <span class="nombreFarmacia"></span></h3>
+                    <div class="col ratio ratio-4x3 text-center card-body" id="iframeMapa">
+                        <iframe id='iframe' src='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>
+                    </div>
+                    <div class="card-footer">
+                        <h6 class="text-center ">Dirección: <span id="direccionFarmacia"></span></h6>
+                    </div>
+                </div>
+                <div class="h-25 card col" id="card2">
+                    <h3 class="text-center card-header nombreTurnoHoy">Hoy está de turno: <span class="nombreFarmacia2"></span></h3>
+                    <h3 style="display:none;" class="text-center nombreTurnoFuturo">Estará de turno: <span class="nombreFarmacia2"></span></h3>
+                    <div class="col ratio ratio-4x3 text-center card-body" id="iframeMapa2">
+                        <iframe id='iframe2' src='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>
+                    </div>
+                    <div class="card-footer">
+                        <h6 class="text-center ">Dirección: <span id="direccionFarmacia2"></span></h6>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row mb-1">
@@ -85,52 +92,37 @@
 </html>
 <script>
    $("#card2").hide();
-   function dibujarDirecciones(infoDeFarmacia){
-    if (infoDeFarmacia.direcciones.length > 1) {
-            $("#preDireccion").html("Direcciones: ");
-        } else {
-            $("#preDireccion").html("Dirección: ");
-        }
-        $("#direccionFarmacia").empty();
-        for (const indiceDireccion in infoDeFarmacia.direcciones) {
-            $( "#direccionFarmacia" ).append(`<div>${infoDeFarmacia.direcciones[indiceDireccion]}</div>`);
-        }
-   }
    $(document).ready(function () {
         const hoy =moment().format('YYYY-MM-DD')
         const datePicker = document.getElementById("calendario")
         datePicker.setAttribute("min", hoy);
         datePicker.setAttribute('value',hoy)
         let infoDeFarmacia=verificarFecha();
-        dibujarDirecciones(infoDeFarmacia)
         $(".nombreFarmacia").html(infoDeFarmacia.nombre);
-        $('#iframe').attr({src:infoDeFarmacia.ubicaciones});
+        $('#iframe').attr({src:infoDeFarmacia.ubicaciones});     
+        $("#direccionFarmacia").html(infoDeFarmacia.direcciones[0]);
         $("#boton1").click(function () {
             let dateString = $("#calendario").val();
             if (dateString == hoy) {
-                $("#nombreTurnoHoy").show();
-                $("#nombreTurnoFuturo").hide();
+                $(".nombreTurnoHoy").show();
+                $(".nombreTurnoFuturo").hide();
             } else {
-                $("#nombreTurnoFuturo").show();
-                $("#nombreTurnoHoy").hide();
+                $(".nombreTurnoFuturo").show();
+                $(".nombreTurnoHoy").hide();
             };
-            infoDeFarmacia = verificarFecha(dateString);
-            $(".nombreFarmacia").html(infoDeFarmacia.nombre);
-            dibujarDirecciones(infoDeFarmacia);
+            infoDeFarmacia = verificarFecha(dateString);            
+       
+            $(".nombreFarmacia").html(infoDeFarmacia.nombre[0]);
             if (infoDeFarmacia.ubicaciones.length == 2) {
                 $("#card2").show();
-                $("#card1").addClass("w-50");
-                for (indexUbicacion in infoDeFarmacia.ubicaciones){
-                    let iframeMapa = "<iframe id='iframe' src='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>";
-                    $("#iframeMapa").append(iframeMapa);
-                    $("#iframe").attr({src:infoDeFarmacia.ubicaciones[indexUbicacion]});
-                }
+                $("#iframe2").attr({src:infoDeFarmacia.ubicaciones[1]});
+                $("#direccionFarmacia2").html(infoDeFarmacia.direcciones[1]);
+                $(".nombreFarmacia2").html(infoDeFarmacia.nombre[1])
             } else {
                 $("#card2").hide();
-                $("#card1").removeClass("w-50");
             };
-            $('#iframe').attr({src:infoDeFarmacia.ubicaciones});
-
+            $('#iframe').attr({src:infoDeFarmacia.ubicaciones[0]});
+            $("#direccionFarmacia").html(infoDeFarmacia.direcciones[0]);
         });
 
         $("#copiar").click(function () {
