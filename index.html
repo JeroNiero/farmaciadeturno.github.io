@@ -87,6 +87,13 @@
     const map = new L.map("map", mapOptions);
     const layer = new L.TileLayer ("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png");
     map.addLayer(layer);
+    function crearMarcador(ubicacion) {
+        const marker = new L.Marker(ubicacion)
+        marker.addTo(map)
+    }
+    function agregarMarcadores(ubicaciones) {
+        ubicaciones.forEach(crearMarcador)
+    }
    function dibujarDirecciones(infoDeFarmacia){
     if (infoDeFarmacia.direcciones.length > 1) {
             $("#preDireccion").html("Direcciones: ");
@@ -106,7 +113,7 @@
         let infoDeFarmacia=verificarFecha();
         dibujarDirecciones(infoDeFarmacia)
         $(".nombreFarmacia").html(infoDeFarmacia.nombre);
-        $('#iframe').attr({src:infoDeFarmacia.ubicaciones});
+        agregarMarcadores(infoDeFarmacia.ubicaciones);
         $("#boton1").click(function () {
             let dateString = $("#calendario").val();
             if (dateString == hoy) {
@@ -119,7 +126,8 @@
             infoDeFarmacia = verificarFecha(dateString)
             $(".nombreFarmacia").html(infoDeFarmacia.nombre);
             dibujarDirecciones(infoDeFarmacia)
-            $('#iframe').attr({src:infoDeFarmacia.ubicaciones});
+            agregarMarcadores(infoDeFarmacia.ubicaciones);
+           
         });
         $("#copiar").click(function () {
             $("#alertaCopiado").removeClass("invisible");
