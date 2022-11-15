@@ -48,16 +48,32 @@
             </div>
             <div class="col"></div>
         </div>
-        <div class="row h-25">
-            <h3 class="text-center" id="nombreTurnoHoy">Hoy está de turno: <span class="nombreFarmacia"></span></h3>
-            <h3 style="display:none;" class="text-center" id="nombreTurnoFuturo">Estará de turno: <span class="nombreFarmacia"></span></h3>
-            <h6 class="text-center">Dirección: <span id="direccionFarmacia"></span></h6>
+        <div class="container">
+            <div class="row">
+                <div class="h-25 card col" id="card1">
+                    <h3 class="text-center card-header nombreTurnoHoy">Hoy está de turno: <span class="nombreFarmacia"></span></h3>
+                    <h3 style="display:none;" class="text-center nombreTurnoFuturo">Estará de turno: <span class="nombreFarmacia"></span></h3>
+                    <div class="col ratio ratio-4x3 text-center card-body" id="iframeMapa">
+                        <iframe id='iframe' src='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>
+                    </div>
+                    <div class="card-footer">
+                        <h6 class="text-center ">Dirección: <span id="direccionFarmacia"></span></h6>
+                    </div>
+                </div>
+                <div class="h-25 card col" id="card2">
+                    <h3 class="text-center card-header nombreTurnoHoy">Hoy está de turno: <span class="nombreFarmacia2"></span></h3>
+                    <h3 style="display:none;" class="text-center nombreTurnoFuturo">Estará de turno: <span class="nombreFarmacia2"></span></h3>
+                    <div class="col ratio ratio-4x3 text-center card-body" id="iframeMapa2">
+                        <iframe id='iframe2' src='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>
+                    </div>
+                    <div class="card-footer">
+                        <h6 class="text-center ">Dirección: <span id="direccionFarmacia2"></span></h6>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row mb-1">
             <div class="col mt-2">
-                <div class="col ratio ratio-4x3 text-center" >
-                    <iframe class="borde1" id="iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12087.774078593295!2d-71.65857040247056!3d-40.76326696351128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9610bf42e48faa93%3A0x205ebc786470b636!2sVilla%20La%20Angostura%2C%20Neuqu%C3%A9n!5e0!3m2!1ses-419!2sar!4v1660081683161!5m2!1ses-419!2sar" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
                 <div class="row justify-content-end">
                     <div class="invisible"></div>
                     <div class="col offset-md-11">
@@ -80,40 +96,40 @@
 
 </html>
 <script>
-   function dibujarDirecciones(infoDeFarmacia){
-    if (infoDeFarmacia.direcciones.length > 1) {
-            $("#preDireccion").html("Direcciones: ");
-        } else {
-            $("#preDireccion").html("Dirección: ");
-        }
-        $("#direccionFarmacia").empty();
-        for (const indiceDireccion in infoDeFarmacia.direcciones) {
-            $( "#direccionFarmacia" ).append(`<div>${infoDeFarmacia.direcciones[indiceDireccion]}</div>`);
-        }
-   }
+   $("#card2").hide();
    $(document).ready(function () {
         const hoy =moment().format('YYYY-MM-DD')
         const datePicker = document.getElementById("calendario")
         datePicker.setAttribute("min", hoy);
         datePicker.setAttribute('value',hoy)
         let infoDeFarmacia=verificarFecha();
-        dibujarDirecciones(infoDeFarmacia)
         $(".nombreFarmacia").html(infoDeFarmacia.nombre);
-        $('#iframe').attr({src:infoDeFarmacia.ubicaciones});
+        $('#iframe').attr({src:infoDeFarmacia.ubicaciones});     
+        $("#direccionFarmacia").html(infoDeFarmacia.direcciones[0]);
         $("#boton1").click(function () {
             let dateString = $("#calendario").val();
             if (dateString == hoy) {
-                $("#nombreTurnoHoy").show();
-                $("#nombreTurnoFuturo").hide();
+                $(".nombreTurnoHoy").show();
+                $(".nombreTurnoFuturo").hide();
             } else {
-                $("#nombreTurnoFuturo").show();
-                $("#nombreTurnoHoy").hide();
-            }
-            infoDeFarmacia = verificarFecha(dateString)
-            $(".nombreFarmacia").html(infoDeFarmacia.nombre);
-            dibujarDirecciones(infoDeFarmacia)
-            $('#iframe').attr({src:infoDeFarmacia.ubicaciones});
+                $(".nombreTurnoFuturo").show();
+                $(".nombreTurnoHoy").hide();
+            };
+            infoDeFarmacia = verificarFecha(dateString);            
+       
+            $(".nombreFarmacia").html(infoDeFarmacia.nombre[0]);
+            if (infoDeFarmacia.ubicaciones.length == 2) {
+                $("#card2").show();
+                $("#iframe2").attr({src:infoDeFarmacia.ubicaciones[1]});
+                $("#direccionFarmacia2").html(infoDeFarmacia.direcciones[1]);
+                $(".nombreFarmacia2").html(infoDeFarmacia.nombre[1])
+            } else {
+                $("#card2").hide();
+            };
+            $('#iframe').attr({src:infoDeFarmacia.ubicaciones[0]});
+            $("#direccionFarmacia").html(infoDeFarmacia.direcciones[0]);
         });
+
         $("#copiar").click(function () {
             $("#alertaCopiado").removeClass("invisible");
             $("#alertaCopiado").addClass("visible");
