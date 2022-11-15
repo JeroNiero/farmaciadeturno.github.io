@@ -48,13 +48,13 @@
             </div>
             <div class="col"></div>
         </div>
-        <div class="container-xxl align-self-center">
-            <div class="row mw-100">
-                <div class="h-25 card col-lg-5 col-sm-10 m-1 align-self-center" id="card1">
-                    <div class="text-center card-header">
+        <div class="container-xxl align-self-center w-100">
+            <div class="row w-100">
+                <div class="h-25 card col-lg-5 col-sm-10 m-1 align-self-center w-100" id="card1">
+                    <div class="text-center card-header nombreTurnoHoy">
                         <h3 class="nombreTurnoHoy">Hoy está de turno: <span class="nombreFarmacia"></span></h3>
                     </div>
-                    <div class="text-center card-header" style="display:none;" class="nombreTurnoFuturo">
+                    <div class="text-center card-header nombreTurnoFuturo" style="display:none;">
                         <h3 style="display:none;" class="text-center nombreTurnoFuturo">Estará de turno: <span class="nombreFarmacia"></span></h3>
                     </div>
                     <div class="col ratio ratio-4x3 text-center card-body" id="iframeMapa">
@@ -65,8 +65,12 @@
                     </div>
                 </div>
                 <div class="h-25 card col-lg-5 col-sm-10 m-1 align-self-center" id="card2">
-                    <h3 class="text-center card-header nombreTurnoHoy">Hoy está de turno: <span class="nombreFarmacia2"></span></h3>
-                    <h3 style="display:none;" class="text-center nombreTurnoFuturo">Estará de turno: <span class="nombreFarmacia2"></span></h3>
+                    <div class="text-center card-header nombreTurnoHoy">
+                        <h3 class="nombreTurnoHoy">Hoy está de turno: <span class="nombreFarmacia2"></span></h3>
+                    </div>
+                    <div style="display:none;" class="text-center card-header nombreTurnoFuturo">
+                        <h3 style="display:none;" class="text-center nombreTurnoFuturo">Estará de turno: <span class="nombreFarmacia2"></span></h3>
+                    </div>
                     <div class="col ratio ratio-4x3 text-center card-body" id="iframeMapa2">
                         <iframe id='iframe2' src='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>
                     </div>
@@ -107,7 +111,7 @@
         datePicker.setAttribute("min", hoy);
         datePicker.setAttribute('value',hoy)
         let infoDeFarmacia=verificarFecha();
-        $(".nombreFarmacia").html(infoDeFarmacia.nombre);
+        $(".nombreFarmacia").html(infoDeFarmacia.nombre[0]);
         $('#iframe').attr({src:infoDeFarmacia.ubicaciones});     
         $("#direccionFarmacia").html(infoDeFarmacia.direcciones[0]);
         $("#boton1").click(function () {
@@ -120,15 +124,16 @@
                 $(".nombreTurnoHoy").hide();
             };
             infoDeFarmacia = verificarFecha(dateString);            
-       
             $(".nombreFarmacia").html(infoDeFarmacia.nombre[0]);
             if (infoDeFarmacia.ubicaciones.length == 2) {
                 $("#card2").show();
                 $("#iframe2").attr({src:infoDeFarmacia.ubicaciones[1]});
                 $("#direccionFarmacia2").html(infoDeFarmacia.direcciones[1]);
-                $(".nombreFarmacia2").html(infoDeFarmacia.nombre[1])
+                $(".nombreFarmacia2").html(infoDeFarmacia.nombre[1]);
+                $("#card1").removeClass("w-100");
             } else {
                 $("#card2").hide();
+                $("#card1").addClass("w-100");
             };
             $('#iframe').attr({src:infoDeFarmacia.ubicaciones[0]});
             $("#direccionFarmacia").html(infoDeFarmacia.direcciones[0]);
